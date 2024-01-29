@@ -20,12 +20,17 @@ const Navbar = () => {
           <a href="/cart" className="text-white hover:text-gray-300">
             Cart
           </a>
-          {user && (
+
+          {user && user.admin && (
+            <a href="/admin" className="text-white hover:text-gray-300">
+            Admin Panel  
+            </a>
+          )}
+          {user ? (
             <button onClick={handleClick} className="text-red-500 hover:text-red-700">
               Log out
             </button>
-          )}
-          {!user && (
+          ) : (
             <>
               <a href="/login" className="text-blue-500 hover:text-blue-700">
                 Login
@@ -42,4 +47,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

@@ -66,8 +66,41 @@ export const ItemProvider = ({ children }) => {
         const totalShipping = calculateTotalShipping();
         return totalPriceExcludingShipping + totalShipping;
     };
+
+    const deleteItem = async (itemId) => {
+        try {
+            const response = await fetch(`/api/item/delete/${itemId}`, { method: 'DELETE' });
+            if (response.ok) {
+                setItems(currentItems => currentItems.filter(item => item._id !== itemId));
+            } else {
+                throw new Error('Failed to delete item');
+            }
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    };
+
+    const addItem = async (newItemData) => {
+        try {
+            const response = await fetch('/api/item/add', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newItemData),
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                setItems(currentItems => [...currentItems, data.item]);
+            } else {
+                throw new Error(data.message || 'Failed to add item');
+            }
+        } catch (error) {
+            console.error('Error adding item:', error);
+        }
+    };
+    
     return (
-        <ItemContext.Provider value={{ items, setItems, cart, setCart, addToCart, calculateTotalPrice}}>
+        <ItemContext.Provider value={{ items, setItems, cart, setCart, addToCart, calculateTotalPrice, deleteItem, addItem}}>
             {children}
         </ItemContext.Provider>
     );

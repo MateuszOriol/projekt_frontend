@@ -8,6 +8,8 @@ import { useAuthContext } from './hooks/useAuthContext';
 import Items from './components/ItemsPage';
 import Cart from './components/Cart';
 import ItemDetail from './components/ItemDetails';
+import ShippingForm from './components/ShippingForm';
+import Admin from './components/Admin';
 
 function App() {
   const { user } = useAuthContext();
@@ -20,8 +22,11 @@ function App() {
           <Route path='/' element={user ? <Items /> : <Navigate to='/login' />} />
           <Route path='/signup' element={!user ? <Signup /> : <Navigate to='/' />} />
           <Route path='/login' element={!user ? <Login /> : <Navigate to='/' />} />
-          <Route path='/cart' element={user ?<Cart /> : <Navigate to='/login' />} />
-          <Route path="/item/:id" element={user ?<ItemDetail /> : <Navigate to='/login' />} />
+          <Route path='/cart' element={<Cart />} />
+          <Route path="/item/:id" element={<ItemDetail />} />
+          <Route path="/shipping" element={<ShippingForm />} />
+
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </div>

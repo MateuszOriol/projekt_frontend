@@ -5,3 +5,12 @@
 .price::after{
     content: " $";
 }
+
+.photo1 {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+.photo1:hover {
+    transform: rotate(10deg);
+}
+  

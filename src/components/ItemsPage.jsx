@@ -17,7 +17,7 @@ const ItemsPage = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {items.map((item) => (
                     <div key={item._id} className="border p-4 rounded shadow hover:shadow-lg transition">
-                        <img src={item.photo} alt={item.name} className="w-32 h-32 object-cover mb-3 rounded mx-auto"/>
+                        <img src={item.photo} alt={item.name} className="photo1 w-32 h-32 object-cover mb-3 rounded mx-auto"/>
                         <h3 className="text-xl font-semibold">{item.name}</h3>
                         <p className="text-gray-600">{item.description}</p>
                         <ShippingPrice price={item.price} shipping1={item.shipping1} />
